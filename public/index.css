@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400&family=Roboto:wght@100&display=swap");
+
+.body {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.mainn {
+    background-color: rgb(98, 182, 255);
+    width: fit-content;
+    padding: 0.01px;
+    display: flex;
+
+    height: 100%;
+}
+
+.heading {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.child-h {
+    padding: 2px;
+}
+
+.child {
+    padding: 2px;
+    font-size: 17px;
+}
+
+.colum-name div {
+    background-color: aqua;
+    text-align: center;
+    margin: 5px;
+    width: 150px;
+}
+
+.colum-user div {
+    background-color: aqua;
+    text-align: center;
+    margin: 5px;
+    width: 100px;
+}
+
+.colum-pid div {
+    background-color: aqua;
+    text-align: center;
+    margin: 5px;
+    width: 100px;
+}
+
+.colum-status div {
+    background-color: aqua;
+    text-align: center;
+    margin: 5px;
+    width: 130px;
+}
+
+.colum-cpu div {
+    background-color: aqua;
+    text-align: center;
+    margin: 5px;
+    width: 100px;
+}
+
+.colum-memory div {
+    background-color: aqua;
+    text-align: center;
+    margin: 5px;
+    width: 150px;
+}
+
+.colum-thread div {
+    background-color: aqua;
+    text-align: center;
+    margin: 5px;
+    width: 90px;
+}
+
+.colum-path div {
+    background-color: aqua;
+    text-align: center;
+    margin: 5px;
+    width: 300px;
+}
+
+.colum-path .child {
+    text-align: start;
+}
+
+table tr th {
+    background-color: rgb(255, 231, 151);
+    width: 100px;
+}
+
+table tr td {
+    text-align: center;
+    background-color: rgb(160, 255, 244);
+}
+
+.name {
+    width: 185px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.t3 {
+    background-color: black;
+}

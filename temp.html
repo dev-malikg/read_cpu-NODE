@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body id="ggh">
+
+    <!-- <script>
+        const data = { username: 'example' };
+
+        fetch('/', { method: 'POST', headers: {'Content-Type': 'application/json',}, body: JSON.stringify(data),}).then((response) => response.json()).then((data) => {console.log('Success:', data);}).catch((error) => {console.error('Error:', error);});
+
+    </script> -->
+
+    <style>
+        .mainn {
+            background-color: rgb(98, 182, 255);
+            width: fit-content;
+            padding: 0.01px;
+            display: flex;
+
+            height: 100%;
+        }
+
+        .heading {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .child-h {
+            padding: 2px;
+        }
+
+        .child {
+            padding: 2px;
+            font-size: 17px;
+        }
+
+        .colum-name div {
+            background-color: aqua;
+            text-align: center;
+            margin: 5px;
+            width: 150px;
+        }
+
+        .colum-user div {
+            background-color: aqua;
+            text-align: center;
+            margin: 5px;
+            width: 100px;
+        }
+
+        .colum-pid div {
+            background-color: aqua;
+            text-align: center;
+            margin: 5px;
+            width: 100px;
+        }
+
+        .colum-status div {
+            background-color: aqua;
+            text-align: center;
+            margin: 5px;
+            width: 130px;
+        }
+
+        .colum-cpu div {
+            background-color: aqua;
+            text-align: center;
+            margin: 5px;
+            width: 100px;
+        }
+
+        .colum-memory div {
+            background-color: aqua;
+            text-align: center;
+            margin: 5px;
+            width: 150px;
+        }
+
+        .colum-thread div {
+            background-color: aqua;
+            text-align: center;
+            margin: 5px;
+            width: 90px;
+        }
+
+        .colum-path div {
+            background-color: aqua;
+            text-align: center;
+            margin: 5px;
+            width: 300px;
+        }
+
+        .colum-path .child {
+            text-align: start;
+        }
+    </style>
+
+
+    <h1>Task Menager</h1>
+
+    <div class="mainn">
+
+
+
+        <div class="colum-name">
+            <div class="child-h"> <span class="heading"> Name </span> </div>
+            <!-- <div class="child">sss</div>
+            <div class="child">uib</div>
+            <div class="child">whe bf4</div> -->
+
+
+            <% async function a(){%>
+                <% const data={}; %>
+
+                    <%for( let index=0; index <=5; index++ ){%>
+                        <%fetch('http: //localhost:3000/api', { method: 'POST' , headers:
+                            {'Content-Type': 'application/json' ,}, body: JSON.stringify(data), }) .then((response)=>
+                            response.json()).then((data) => {console.log('Success:', data)})
+                            .catch((error) => {console.error('Error:', error)})
+                            %>
+                            <div class="child">root</div>
+                            <%}%>
+                                <%}%>
+
+                                    <% a() %>
+
+
+        </div>
+        <div class="colum-user">
+            <div class="child-h"> <span class="heading"> User </span> </div>
+            <div class="child"> root </div>
+            <div class="child">root</div>
+            <div class="child">gaurav</div>
+        </div>
+        <div class="colum-pid">
+            <div class="child-h"> <span class="heading"> PID </span> </div>
+            <div class="child">root</div>
+            <div class="child">root</div>
+            <div class="child">gaurav</div>
+        </div>
+        <div class="colum-status">
+            <div class="child-h"> <span class="heading"> Status </span> </div>
+            <div class="child">root</div>
+            <div class="child">root</div>
+            <div class="child">gaurav</div>
+        </div>
+        <div class="colum-cpu">
+            <div class="child-h"> <span class="heading"> Cpu % </span> </div>
+            <div class="child">root</div>
+            <div class="child">root</div>
+            <div class="child">gaurav</div>
+        </div>
+        <div class="colum-memory">
+            <div class="child-h"> <span class="heading"> Memory % </span> </div>
+            <div class="child">root</div>
+            <div class="child">root</div>
+            <div class="child">gaurav</div>
+        </div>
+        <div class="colum-thread">
+            <div class="child-h"> <span class="heading"> Threads </span> </div>
+            <div class="child">root</div>
+            <div class="child">root</div>
+            <div class="child">gaurav</div>
+        </div>
+        <div class="colum-path">
+            <div class="child-h"> <span class="heading"> Path </span> </div>
+            <div class="child">root</div>
+            <div class="child">root</div>
+            <div class="child">gaurav</div>
+        </div>
+
+    </div>
+
+    <style>
+        table tr th {
+            background-color: rgb(255, 231, 151);
+            width: 100px;
+        }
+
+        table tr td {
+            text-align: center;
+            background-color: rgb(160, 255, 244);
+        }
+    </style>
+    <script>
+        // var tbodyy = document.getElementById("tbody1")
+
+        // async function AddItem(name, user, pid, status, cpu, memory, threads, path){
+        //     // creating a new row
+        //     let trow = document.createElement("tr")
+        //     let td1 = document.createElement("td")
+        //     let td2 = document.createElement("td")
+        //     let td3 = document.createElement("td")
+        //     let td4 = document.createElement("td")
+        //     let td5 = document.createElement("td")
+        //     let td6 = document.createElement("td")
+        //     let td7 = document.createElement("td")
+        //     let td8 = document.createElement("td")
+
+        //     // assigning values of columns
+        //     td1.innerHTML = name
+        //     td2.innerHTML = user
+        //     td3.innerHTML = pid
+        //     td4.innerHTML = status
+        //     td5.innerHTML = cpu
+        //     td6.innerHTML = memory
+        //     td7.innerHTML = threads
+        //     td8.innerHTML = path
+
+        //     // adding columes to the row
+        //     trow.appendChild(td1)
+        //     trow.appendChild(td2)
+        //     trow.appendChild(td3)
+        //     trow.appendChild(td4)
+        //     trow.appendChild(td5)
+        //     trow.appendChild(td6)
+        //     trow.appendChild(td7)
+        //     trow.appendChild(td8)
+
+        //     // adding the row to table
+        //     tbodyy.appendChild(trow)
+        // }
+
+        // AddItem("a", "a", "a", "a", "a", "a", "a", "a")
+
+        function addRow() {
+            let table = document.getElementById("mytable");
+            let row = table.insertRow(-1);
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            cell1.innerHTML = "value";
+            cell2.innerHTML = "result";
+        }
+    </script>
+
+    <table id="mytable">
+        <tr>
+            <th>Name</th>
+            <th>User</th>
+            <!-- <th>PID</th>
+          <th>Status</th>
+          <th>Cpu %</th>
+          <th>Memory % </th>
+          <th>Threads</th>
+          <th>Path</th> -->
+        </tr>
+
+        <tr>
+            <td>gaurav</td>
+            <td>root</td>
+        </tr>
+
+
+        <!-- <tr>
+          <td>baba.exe</td>
+          <td>root</td>
+          <td>2312</td>
+          <td>running</td>
+          <td>2</td>
+          <td>5</td>
+          <td>31</td>
+          <td>/system/bin</td>
+        </tr> -->
+
+
+    </table>
+    <button onclick="addRow()">ADD</button>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="colum-name">
+    <div class="child-h"> <span class="heading"> Name </span> </div>
+    <!-- <div class="child">sss</div>
+    <div class="child">uib</div>
+    <div class="child">whe bf4</div> -->
+
+
+    <% async function a(){%>
+        <% const data = {}; %>
+
+        <%for( let index = 0; index <= 5; index++ ){%>
+            <%fetch('http://localhost:3000/api', { 
+                method: 'POST',
+                headers: {'Content-Type': 'application/json',},
+                body: JSON.stringify(data),
+            })
+                .then((response) => response.json()).then((data) => {console.log('Success:', data)})
+                .catch((error) => {console.error('Error:', error)})
+            %>
+            <div class="child">root</div>
+        <%}%>
+    <%}%>
+
+    <% a() %>
+
+    
+</div>

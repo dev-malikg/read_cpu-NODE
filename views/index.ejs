@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="./index.css">
+    <title>Document</title>
+</head>
+
+<body class="body">
+
+    <h1>Task Menager</h1>
+
+    <table id="q_table">
+        <tr>
+            <th class="">Name</th>
+            <th>User</th>
+            <th>PID</th>
+            <th>Status</th>
+            <th>Cpu %</th>
+            <th>Memory % </th>
+            <th>Threads</th>
+        </tr>
+
+        <tbody id="table_body"></tbody>
+
+    </table>
+
+    <script>
+
+        function del() {
+            var node = document.getElementById("table_body");
+            while (node.hasChildNodes()) {
+                node.removeChild(node.lastChild);
+            }
+        }
+
+        var table_body = document.getElementById("table_body")
+
+        async function AddItem(name, user, pid, status, cpu, memory, threads, id_num) {
+            // creating a new row
+            let trow = document.createElement("tr")
+            trow.setAttribute('class', "t" + id_num);
+
+            let td1 = document.createElement("td")
+            let td2 = document.createElement("td")
+            let td3 = document.createElement("td")
+            let td4 = document.createElement("td")
+            let td5 = document.createElement("td")
+            let td6 = document.createElement("td")
+            let td7 = document.createElement("td")
+            // let td8 = document.createElement("td")
+
+            // no need
+            td1.setAttribute('class', 'name');
+            td2.setAttribute('class', 'user' + id_num);
+            td3.setAttribute('class', 'pid' + id_num);
+            td4.setAttribute('class', 'status' + id_num);
+            td5.setAttribute('class', 'cpu' + id_num);
+            td6.setAttribute('class', 'memory' + id_num);
+            td7.setAttribute('class', 'threads' + id_num);
+
+            // assigning values of columns
+            td1.innerHTML = name
+            td2.innerHTML = user
+            td3.innerHTML = pid
+            td4.innerHTML = status
+            td5.innerHTML = cpu
+            td6.innerHTML = memory
+            td7.innerHTML = threads
+
+            // adding columes to the row
+            trow.appendChild(td1)
+            trow.appendChild(td2)
+            trow.appendChild(td3)
+            trow.appendChild(td4)
+            trow.appendChild(td5)
+            trow.appendChild(td6)
+            trow.appendChild(td7)
+
+            // adding the row to table
+            table_body.appendChild(trow)
+        }
+
+        function deleteLastRow() {
+            var table = document.getElementById("q_table")
+            var rowCount = table.rows.length
+
+            table.deleteRow(rowCount - 1)
+        }
+
+        function updateRowData(rowNumber, dataToUpdate) {
+
+            var table_row = document.getElementById('q_table').rows[parseInt(rowNumber)] // starts from 1
+
+            table_row.cells[0].innerHTML = dataToUpdate[0]
+            table_row.cells[1].innerHTML = dataToUpdate[1]
+            table_row.cells[2].innerHTML = dataToUpdate[2]
+            table_row.cells[3].innerHTML = dataToUpdate[3]
+            table_row.cells[4].innerHTML = dataToUpdate[4]
+            table_row.cells[5].innerHTML = dataToUpdate[5]
+            table_row.cells[6].innerHTML = dataToUpdate[6]
+        }
+
+        async function fetching_data() {
+            const data = {};
+            await fetch('http://localhost:3000/api', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', },
+                body: JSON.stringify(data),
+            })
+                .then((response) => response.json()).then((data) => { return data[0].processUsername })
+                .catch((error) => { console.error('Error:', error) })
+        }
+
+
+        const data = {};
+        fetch('http://localhost:3000/api', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json()).then((data) => {
+
+                for (const property in data) {
+
+                    // formatting name of the response
+                    namee = data[property].processName
+                    if (namee.length > 18) { namee = namee.slice(0, 18) + "   ..." }
+
+                    AddItem(
+                        namee,
+                        data[property].processUsername,
+                        data[property].processID,
+                        data[property].processStatus,
+                        data[property].processCpupercentage,
+                        data[property].processMemorypercentage.toFixed(1),
+                        data[property].processThreads,
+                        property
+                    )
+                }
+            })
+            .catch((error) => { console.error('Error:', error) })
+
+        $(document).ready(function () {
+            setInterval(function () {
+
+                console.log("refreshing...")
+
+                const data = {};
+                fetch('http://localhost:3000/api', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', },
+                    body: JSON.stringify(data),
+                })
+                    .then((response) => response.json()).then((data) => {
+
+                        var x = (document.getElementById("q_table").rows.length) - 1        // current number of rows
+                        var y = Object.keys(data).length                                    // number of rows in new data
+
+                        if (x < y) {
+
+                            const diffrence = y - x
+                            for (var i = 0; i < diffrence; i++) { AddItem("", "", "", "", "", "", "", "") }    // making space in table for more elements
+
+                            // fitting new data into table
+                            for (var i = 1; i <= y; i++) {
+                                namee = data[i - 1].processName
+                                if (namee.length > 18) { namee = namee.slice(0, 18) + "   ..." }
+
+                                updateRowData(i, [
+                                    namee,
+                                    data[i - 1].processUsername,
+                                    data[i - 1].processID,
+                                    data[i - 1].processStatus,
+                                    data[i - 1].processCpupercentage,
+                                    data[i - 1].processMemorypercentage.toFixed(1),
+                                    data[i - 1].processThreads,
+                                ])
+                            }
+                        }
+                        else if (x > y) {
+
+                            const diffrence = x - y
+                            for (var i = 0; i < diffrence; i++) { deleteLastRow() }                            // deleting space from table which is unnecessary
+                            
+                            // fitting new data into table
+                            for (var i = 1; i <= y; i++) {
+                                namee = data[i - 1].processName
+                                if (namee.length > 18) { namee = namee.slice(0, 18) + "   ..." }
+
+                                updateRowData(i, [
+                                    namee,
+                                    data[i - 1].processUsername,
+                                    data[i - 1].processID,
+                                    data[i - 1].processStatus,
+                                    data[i - 1].processCpupercentage,
+                                    data[i - 1].processMemorypercentage.toFixed(1),
+                                    data[i - 1].processThreads,
+                                ])
+                            }
+                        }
+                    })
+                    .catch((error) => { console.error('Error:', error) })
+
+            }, 1000)
+        })
+
+    </script>
+
+</body>
+
+</html>
